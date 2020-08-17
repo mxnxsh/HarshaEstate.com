@@ -1,0 +1,384 @@
+<%- include ("./../partials/adminHeader") %>
+<style>
+    img {
+        width: 100px;
+        height: 100px;
+    }
+</style>
+<br><br>
+<div class="container">
+    <h2 class="page-title">Add a Residential Property</h2>
+    <a href="/admin/add_products"
+        class="btn btn-primary">Back to all Residential Property</a>
+    <br><br>
+    <div class="row">
+        <div class="col">
+            <form action="/admin/products/edit_products/<%=_id%>"
+                method="post"
+                enctype="multipart/form-data">
+                <!-- Title -->
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text"
+                        class="form-control"
+                        id="formGroupExampleInput"
+                        name="title"
+                        value="<%=title%>"
+                        placeholder="Title">
+                </div>
+
+                <!-- Description -->
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="desc"
+                        class="form-control"
+                        cols="30"
+                        rows="10"
+                        placeholder="Description"><%= desc %>
+                    </textarea>
+                </div>
+
+                <!-- Option1 -->
+                <label>Option1</label><br>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                            type="radio"
+                            name="option1"
+                            id="myCheck"
+                            value="<%=Rental%>"
+                            onclick="Rental(this.value)"
+                            <% if (option1 == "Rental") { %>
+                            checked="checked"
+                            <% } %>>
+                        <label class="form-check-label">Rental</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                            type="radio"
+                            name="option1"
+                            id="myCheck2"
+                            value="<%=NonRental%>"
+                            onclick="NonRental(this.value)"
+                            <% if (option1 == "NonRental") { %>
+                            checked="checked"
+                            <% } %>>
+                        <label class="form-check-label">Non-rental</label>
+                    </div>
+                </div>
+
+                <!-- Price -->
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="text"
+                        class="form-control"
+                        placeholder="Price"
+                        name="price"
+                        value="<%= price%>">
+                </div>
+
+                <!-- Deposit -->
+                <div class="form-group"
+                    style="display: none;"
+                    id="deposit">
+                    <label>Deposit</label>
+                    <input type="number"
+                        class="form-control"
+                        placeholder="Deposit"
+                        name="deposit"
+                        value="<%=deposit%>">
+                </div>
+
+                <!-- Option2 -->
+                <label>Option2</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input"
+                        type="radio"
+                        name="option2"
+                        id="option2"
+                        value="<%=ReadyPosession%>"
+                        <% if (option2 == "Ready Posession") { %>
+                        checked="checked"
+                        <% } %>>
+                    <label class="form-check-label">Ready posession</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input"
+                        type="radio"
+                        name="option2"
+                        id="option2"
+                        value="<%=UnderConstrution%>"
+                        <% if (option2 == "Under Constrution") { %>
+                        checked="checked"
+                        <% } %>>
+                    <label class="form-check-label">Under Constrution</label>
+                </div><br><br>
+
+                <!-- Bathroom -->
+                <div class="form-group">
+                    <label>Bathroom</label>
+                    <input type="number"
+                        class="form-control"
+                        placeholder="Bathroom"
+                        name="bathroom"
+                        value="<%= bathroom%>">
+                </div>
+
+                <!-- floor Area -->
+                <div class="form-group">
+                    <label>Number of floor Area</label>
+                    <input type="number"
+                        class="form-control"
+                        placeholder="floorArea"
+                        name="floorArea"
+                        value="<%= floorArea%>">
+                </div>
+
+                <!-- Location -->
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text"
+                        class="form-control"
+                        placeholder="Location"
+                        name="location"
+                        value="<%= location%>">
+                </div>
+
+                <!-- Available / Unavailable -->
+                <div class="form-group">
+                    <label>Available / Unavailable</label>
+                    <select name="isOn"
+                        class="custom-select">
+                        <option <%= isOn==='available' ? 'selected': '' %>
+                            value="available">Available</option>
+                        <option <%= isOn==='unavailable' ? 'selected': '' %>
+                            value="unavailable">Unavailable</option>
+                    </select>
+                </div>
+
+                <!-- Category -->
+                <div class="form-group">
+                    <label>Category</label>
+                    <select name="category"
+                        class="form-control">
+                        <% categories.forEach(function(catg){ %>
+                        <option value="<%= catg.slug %>"
+                            <% if (catg.slug == category) { %>
+                            selected="selected"
+                            <% } %>>
+                            <%= catg.title %></option>
+                        <% }); %>
+                    </select>
+                </div>
+
+                <!-- Amenities -->
+                <label>Amenities</label><br>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                            type="checkbox"
+                            id=""
+                            name="amenities"
+                            value="<%=Garden%>"
+                            <% if (amenities.find(amenitie=> amenitie=="Garden" )) { %>
+                            checked="checked"
+                            <% } %>>
+                        <label class="form-check-label">Garden</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                            type="checkbox"
+                            id=""
+                            name="amenities"
+                            value="<%=PowerBackup%>"
+                            <% if (amenities.find(amenitie=> amenitie=="Power Backup" )) { %>
+                            checked="checked"
+                            <% } %>>
+                        <label class="form-check-label">Power Backup</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                            type="checkbox"
+                            id=""
+                            name="amenities"
+                            value="<%=Lift%>"
+                            <% if (amenities.find(amenitie=> amenitie=="Lift" )) { %>
+                            checked="checked"
+                            <% } %>>
+                        <label class="form-check-label">List</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                            type="checkbox"
+                            id=""
+                            name="amenities"
+                            value="<%=ChildrenPlayArea%>"
+                            <% if (amenities.find(amenitie=> amenitie=="Children Play Area" )) { %>
+                            checked="checked"
+                            <% } %>>
+                        <label class="form-check-label">Children play area</label>
+                    </div>
+                </div>
+                <br>
+                <!-- Near by -->
+                <label>Near by</label><br>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                            type="checkbox"
+                            id=""
+                            name="nearby"
+                            value="<%=GYM%>"
+                            <% if (nearby.find(nby=> nby=="GYM" )) { %>
+                            checked="checked"
+                            <% } %>>
+                        <label class="form-check-label">GYM</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                            type="checkbox"
+                            id=""
+                            name="nearby"
+                            value="<%=Temple%>"
+                            <% if (nearby.find(nby=> nby=="Temple" )) { %>
+                            checked="checked"
+                            <% } %>>
+                        <label class="form-check-label">Temple</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                            type="checkbox"
+                            id=""
+                            name="nearby"
+                            value="<%=School%>"
+                            <% if (nearby.find(nby=> nby == "School" )) { %>
+                            checked="checked"
+                            <% } %>>
+                        <label class="form-check-label">School</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                            type="checkbox"
+                            id=""
+                            name="nearby"
+                            value="<%=SuperMarket%>"
+                            <% if (nearby.find(nby=> nby == "Super Market" )) { %>
+                            checked="checked"
+                            <% } %>>
+                        <label class="form-check-label">Super Market</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"
+                            type="checkbox"
+                            id=""
+                            name="nearby"
+                            value="<%=Station%>"
+                            <% if (nearby.find(nby=> nby=="Station" )) { %>
+                            checked="checked"
+                            <% } %>>
+                        <label class="form-check-label">Station</label>
+                    </div>
+                </div><br>
+
+                <!--Current Image-->
+                <div class="form-group">
+                    <label for="">Current Image</label>
+                    <p>
+                        <% if (image == "") { %>
+                        <img id="noimage"
+                            src="/images/noimage.png"
+                            alt="no image">
+                        <% } else {%>
+                        <img id="noimage"
+                            src="/uploads/avatar/<%=image%>"
+                            alt="current image">
+                        <% } %>
+                    </p>
+                </div>
+                <!--Avatar Upload-->
+                <div class="form-group">
+                    <label>Upload Image</label>
+                    <input type="file"
+                        class="form-control-file"
+                        name="avatar"
+                        id="img"
+                        onchange="preveiw()">
+                    <!--<img src="#" id="imgPreview" alt="">-->
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="preview-images"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Multiple Image Upload -->
+                <!-- <div class="form-group">
+                    <label>Multiple Image</label>
+                    <input type="file" class="form-control-file" name="gallery" id="img" multiple />
+                    <img src="#" id="imgPreview" alt="" />
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="preview-images"></div>
+                        </div>
+                    </div>
+                </div> -->
+
+                <input type="hidden"
+                    name="pimage"
+                    value="<%= image %>">
+                <button type="submit"
+                    onclick="printChecked()"
+                    class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function preview() {
+        imgPreview.src = URL.createObjectURL(event.target.files[0]);
+    }
+
+    function Rental(val) {
+        var element = document.getElementById("deposit");
+        if (val == "Rental") {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+
+    function NonRental(val) {
+        var element = document.getElementById("deposit");
+        if (val == "NonRental") {
+            element.style.display = 'none';
+        } else {
+            element.style.display = 'block';
+        }
+    }
+
+    function check() {
+        document.getElementById("myCheck").checked = true;
+    }
+
+    function uncheck() {
+        document.getElementById("myCheck2").checked = true;
+    }
+</script>
+<script type="text/javascript">
+    function printChecked() {
+        var items = document.getElementsByName('amenities');
+        var selectedItems = "";
+        for (var i = 0; i < items.length; i++) {
+            if (items[i].type == 'checkbox' && items[i].checked == true)
+                selectedItems += items[i].value + "\n";
+        }
+    }
+</script>
+<script src="/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('desc');
+</script>
+<%- include ("./../partials/adminFooter") %>

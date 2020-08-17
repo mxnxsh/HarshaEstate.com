@@ -1,0 +1,335 @@
+<%- include ("./../partials/adminHeader") %>
+<style>
+   img {
+      width: 100px;
+      height: 100px;
+   }
+</style>
+<br /><br />
+<div class="container">
+   <h2 class="page-title">Add a Residential Property</h2>
+   <a href="/admin/products"
+      class="btn btn-primary">Back to all Residential Property</a>
+   <br /><br />
+   <div class="row">
+      <div class="col">
+         <form action="/admin/products/add_products"
+            method="post"
+            enctype="multipart/form-data">
+            <!-- Title -->
+            <div class="form-group">
+               <label>Title</label>
+               <input type="text"
+                  class="form-control"
+                  id="formGroupExampleInput"
+                  name="title"
+                  value="<%= title%>"
+                  placeholder="Title" />
+            </div>
+            <!-- Description -->
+            <div class="form-group">
+               <label>Description</label>
+               <textarea class="form-control"
+                  cols="30"
+                  rows="10"
+                  placeholder="Description"
+                  name="desc">
+                        <%= desc%>
+               </textarea>
+            </div>
+            <!-- Option1 -->
+            <label>Option1</label><br />
+            <div>
+               <div class="form-check form-check-inline">
+                  <input class="form-check-input"
+                     type="radio"
+                     name="option1"
+                     id="inlineRadio1"
+                     value="<%=Rental%>"
+                     onclick="Rental(this.value)" />
+                  <label class="form-check-label">Rental</label>
+               </div>
+               <div class="form-check form-check-inline">
+                  <input class="form-check-input"
+                     type="radio"
+                     name="option1"
+                     id="inlineRadio2"
+                     value="<%=NonRental%>"
+                     onclick="NonRental(this.value)" />
+                  <label class="form-check-label">Sale</label>
+               </div>
+            </div>
+            <!-- Price -->
+            <div class="form-group">
+               <label>Price</label>
+               <input type="number"
+                  class="form-control"
+                  placeholder="Price"
+                  name="price"
+                  value="<%= price%>"
+                  required />
+            </div>
+
+            <!-- Deposit -->
+            <div class="form-group"
+               style="display: none;"
+               id="deposit">
+               <label>Deposit</label>
+               <input type="number"
+                  class="form-control"
+                  placeholder="Deposit"
+                  name="deposit"
+                  value="<%=deposit%>" />
+            </div>
+
+            <!-- Option2 -->
+            <label>Option2</label><br />
+            <div class="form-check form-check-inline">
+               <input class="form-check-input"
+                  type="radio"
+                  name="option2"
+                  id="option2"
+                  value="<%=ReadyPosession%>" />
+               <label class="form-check-label">Ready posession</label>
+            </div>
+            <div class="form-check form-check-inline">
+               <input class="form-check-input"
+                  type="radio"
+                  name="option2"
+                  id="option2"
+                  value="<%=UnderConstrution%>" />
+               <label class="form-check-label">Under Constrution</label>
+            </div>
+            <br /><br />
+
+            <!-- bathroom -->
+            <div class="form-group">
+               <label>Number of Bathroom</label>
+               <input type="number"
+                  class="form-control"
+                  placeholder="Number of Bathroom"
+                  name="bathroom"
+                  value="<%= bathroom%>" />
+            </div>
+
+            <!-- Floor Area -->
+            <div class="form-group">
+               <label>Floor Area</label>
+               <input type="number"
+                  class="form-control"
+                  placeholder="Floor Area"
+                  name="floorArea"
+                  value="<%= floorArea%>" />
+            </div>
+
+            <!-- Location -->
+            <div class="form-group">
+               <label>Location</label>
+               <input type="text"
+                  class="form-control"
+                  placeholder="Location"
+                  name="location"
+                  value="<%= location%>" />
+            </div>
+            <!-- Available / Unavailable -->
+            <div class="form-group">
+               <label>Available / Unavailable</label>
+               <select name="isOn"
+                  class="custom-select">
+                  <option selected
+                     value="available">Available</option>
+                  <option value="unavailable">Unavailable</option>
+               </select>
+            </div>
+
+            <!-- Category -->
+            <div class="form-group">
+               <label>Category</label>
+               <select name="category"
+                  class="form-control">
+                  <option>None</option>
+                  <%categories.forEach(catg=>{%>
+                  <option value="<%=catg.slug%>"><%=catg.title%></option>
+                  <%})%>
+               </select>
+            </div>
+
+            <!-- Amenities -->
+            <label>Amenities</label><br />
+            <div class="form-check form-check-inline">
+               <input class="form-check-input"
+                  type="checkbox"
+                  id=""
+                  name="amenities"
+                  value="<%=Garden%>" />
+               <label class="form-check-label">Garden</label>
+            </div>
+            <div class="form-check form-check-inline">
+               <input class="form-check-input"
+                  type="checkbox"
+                  id=""
+                  name="amenities"
+                  value="<%=PowerBackup%>" />
+               <label class="form-check-label">Power Backup</label>
+            </div>
+            <div class="form-check form-check-inline">
+               <input class="form-check-input"
+                  type="checkbox"
+                  id=""
+                  name="amenities"
+                  value="<%=Lift%>" />
+               <label class="form-check-label">Lift</label>
+            </div>
+            <div class="form-check form-check-inline">
+               <input class="form-check-input"
+                  type="checkbox"
+                  id=""
+                  name="amenities"
+                  value="<%=ChildrenPlayArea%>" />
+               <label class="form-check-label">Children play area</label>
+            </div>
+            <br /><br />
+
+            <!-- Near by -->
+            <label>Near by</label><br />
+            <div class="form-check form-check-inline">
+               <input class="form-check-input"
+                  type="checkbox"
+                  id=""
+                  name="nearby"
+                  value="<%=GYM%>" />
+               <label class="form-check-label">GYM</label>
+            </div>
+            <div class="form-check form-check-inline">
+               <input class="form-check-input"
+                  type="checkbox"
+                  id=""
+                  name="nearby"
+                  value="<%=Temple%>" />
+               <label class="form-check-label">Temple</label>
+            </div>
+            <div class="form-check form-check-inline">
+               <input class="form-check-input"
+                  type="checkbox"
+                  id=""
+                  name="nearby"
+                  value="<%=School%>" />
+               <label class="form-check-label">School</label>
+            </div>
+            <div class="form-check form-check-inline">
+               <input class="form-check-input"
+                  type="checkbox"
+                  id=""
+                  name="nearby"
+                  value="<%=SuperMarket%>" />
+               <label class="form-check-label">Super Market</label>
+            </div>
+            <div class="form-check form-check-inline">
+               <input class="form-check-input"
+                  type="checkbox"
+                  id=""
+                  name="nearby"
+                  value="<%=Station%>" />
+               <label class="form-check-label">Station</label>
+            </div>
+            <br /><br />
+
+            <!-- Single Image Upload-->
+            <div class="form-group">
+               <label>Image</label>
+               <input type="file"
+                  class="form-control-file"
+                  name="avatar"
+                  id="img"
+                  onchange="preview()" />
+               <img src="#"
+                  id="imgPreview"
+                  alt="">
+               <hr />
+            </div>
+
+            <!-- Multiple Image Upload -->
+            <div class="form-group">
+               <label>Multiple Image</label>
+               <input type="file"
+                  class="form-control-file"
+                  name="gallery"
+                  id="gallery-photo-add"
+                  multiple />
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="gallery"></div>
+                     <hr />
+                  </div>
+               </div>
+            </div>
+
+            <!-- Submit Button  -->
+            <button type="submit"
+               onclick="printChecked()"
+               class="btn btn-primary">
+               Submit
+            </button>
+         </form>
+      </div>
+   </div>
+</div>
+
+<script>
+   function preview() {
+      imgPreview.src = URL.createObjectURL(event.target.files[0]);
+   }
+
+   $(function () {
+      // Multiple images preview in browser
+      var imagesPreview = function (input, placeToInsertImagePreview) {
+         if (input.files) {
+            var filesAmount = input.files.length;
+            for (i = 0; i < filesAmount; i++) {
+               var reader = new FileReader();
+               reader.onload = function (event) {
+                  $($.parseHTML('<img>'))
+                     .attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+               }
+               reader.readAsDataURL(input.files[i]);
+            }
+         }
+      };
+      $('#gallery-photo-add').on('change', function () {
+         imagesPreview(this, 'div.gallery');
+      });
+   });
+
+   function Rental(val) {
+      var element = document.getElementById('deposit');
+      if (val == 'Rental') {
+         element.style.display = 'block';
+      } else {
+         element.style.display = 'none';
+      }
+   }
+
+   function NonRental(val) {
+      var element = document.getElementById('deposit');
+      if (val == 'NonRental') {
+         element.style.display = 'none';
+      } else {
+         element.style.display = 'none';
+      }
+   }
+</script>
+<script type="text/javascript">
+   function printChecked() {
+      var items = document.getElementsByName('amenities');
+      var selectedItems = '';
+      for (var i = 0; i < items.length; i++) {
+         if (items[i].type == 'checkbox' && items[i].checked == true)
+            selectedItems += items[i].value + '\n';
+      }
+   }
+</script>
+<script src="/ckeditor/ckeditor.js"></script>
+<script>
+   CKEDITOR.replace('desc')
+</script>
+<%- include ("./../partials/adminFooter") %>

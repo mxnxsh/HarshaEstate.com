@@ -1,0 +1,192 @@
+<%- include("./../partials/header.ejs")%>
+<style>
+	.carousel-indicators li {
+		background-color: #fac802
+	}
+</style>
+<section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight"
+	style="background-image: url('/images/bg_1.jpg');"
+	data-stellar-background-ratio="0.5">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+			<div class="col-md-9 ftco-animate pb-5 text-center">
+				<p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i
+								class="ion-ios-arrow-forward"></i></a></span> <span>Properties <i
+							class="ion-ios-arrow-forward"></i></span></p>
+				<h1 class="mb-3 bread"><%=product.title%></h1>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="ftco-section ftco-property-details">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-12">
+				<div class="property-details">
+
+					<div id="carouselExampleIndicators"
+						class="carousel slide"
+						data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#carouselExampleIndicators"
+								data-slide-to="0"
+								class="active"></li>
+							<% product.gallery.forEach(function(product,index){%>
+							<li data-target="#carouselExampleIndicators"
+								data-slide-to="<%=index +1%>"></li>
+							<%})%>
+
+						</ol>
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<div class="img d-block w-100"
+									style="background-image: url(/uploads/avatar/<%=product.avatar%>);">
+								</div>
+							</div>
+							<%product.gallery.forEach(gall=>{%>
+							<div class="carousel-item">
+								<div class="img d-block w-100"
+									style="background-image: url(/uploads/gallery/<%=gall%>);">
+								</div>
+							</div>
+							<%})%>
+
+							<!-- <div class="
+									carousel-item">
+								<div class="img d-block w-100"
+									style="background-image: url(/images/chef-1.png);">
+								</div>
+
+							</div> -->
+						</div>
+						<a class="carousel-control-prev"
+							href="#carouselExampleIndicators"
+							role="button"
+							data-slide="prev">
+							<span class="carousel-control-prev-icon"
+								aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+						</a>
+						<a class="carousel-control-next"
+							href="#carouselExampleIndicators"
+							role="button"
+							data-slide="next">
+							<span class="carousel-control-next-icon"
+								aria-hidden="true"></span>
+							<span class="sr-only">Next</span>
+						</a>
+					</div>
+
+					<div class="text text-center">
+						<span class="subheading"><%=product.location%></span>
+						<h2><%=product.title%></h2>
+						<p>₹<%=product.price%></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 pills">
+				<div class="bd-example bd-example-tabs">
+					<div class="d-flex justify-content-center">
+						<ul class="nav nav-pills mb-3"
+							id="pills-tab"
+							role="tablist">
+							<li class="nav-item">
+								<a class="nav-link "
+									id="pills-amentities-tab"
+									data-toggle="pill"
+									href="#pills-amentities"
+									role="tab"
+									aria-controls="pills-amentities"
+									aria-expanded="true">Amenities</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active"
+									id="pills-description-tab"
+									data-toggle="pill"
+									href="#pills-description"
+									role="tab"
+									aria-controls="pills-description"
+									aria-expanded="true">Description</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link"
+									id="pills-nearby-tab"
+									data-toggle="pill"
+									href="#pills-nearby"
+									role="tab"
+									aria-controls="pills-nearby"
+									aria-expanded="true">NearBy</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="tab-content"
+						id="pills-tabContent">
+						<div class="tab-pane fade show "
+							id="pills-amentities"
+							role="tabpanel"
+							aria-labelledby="pills-amentities-tab">
+							<div class="row">
+								<div class="col-md-6">
+									<ul class="features">
+										<li class="check"><span class="ion-ios-checkmark"></span>Lot Area:
+											<%=product.floorArea%> SQ
+											FT</li>
+										<li class="check"><span class="ion-ios-checkmark"></span>Bed Rooms:
+											<%=product.category%></li>
+										<li class="check"><span class="ion-ios-checkmark"></span>Bath Rooms:
+											<%=product.bathroom%></li>
+									</ul>
+								</div>
+								<div class="col-md-6">
+									<ul class="features">
+										<li class="check"><span class="ion-ios-checkmark"></span>Water</li>
+										<%product.amenities.forEach(amenitie=> {%>
+										<li class="check"><span class="ion-ios-checkmark"></span><%=amenitie%></li>
+										<%})%>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="tab-pane fade show active"
+							id="pills-description"
+							role="tabpanel"
+							aria-labelledby="pills-description-tab">
+							<p><%-product.option1%></p>
+							<p><%-product.option2%></p>
+							<p><%-product.desc%></p>
+						</div>
+
+						<div class="tab-pane fade"
+							id="pills-nearby"
+							role="tabpanel"
+							aria-labelledby="pills-nearby-tab">
+							<div class="row">
+								<div class="col-md-6">
+									<ul class="features">
+										<%product.nearby.forEach(near=> {%>
+										<li class="check"><span class="ion-ios-checkmark"></span><%=near%></li>
+										<%})%>
+									</ul>
+								</div>
+								<div class="col-md-6">
+									<!-- <ul class="features">
+										<li class="check"><span class="ion-ios-checkmark"></span>Floor Area: 1,300
+											SQ FT</li>
+										<li class="check"><span class="ion-ios-checkmark"></span>Water</li>
+									</ul> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<%- include("./../partials/footer.ejs")%>

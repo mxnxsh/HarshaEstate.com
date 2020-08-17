@@ -1,0 +1,51 @@
+<%- include ("./../partials/adminHeader") %>
+<div class="container">
+    <%- include ("./../partials/messages") %>
+</div>
+<div class="container table-responsive">
+    <h2 class="page-title">Commerical categories</h2>
+    <a href="commerical-categories/commerical-add-categories"
+        class="btn btn-primary">Add a new category</a>
+    <br><br>
+
+    <table class="table propertyList table-hover">
+
+        <thead class="thead-dark">
+            <tr>
+                <th>Category</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% commericalCategory.forEach(function(cat){ %>
+            <tr>
+                <td>
+                    <%= cat.title %>
+                </td>
+                <!--<p style="display: inline;" data-placement="top" data-toggle="tooltip" ><a class="btn btn-primary btn-xs" href="#" ><img src="/images/eye.svg" ></a></p>-->
+
+                <td>
+                    <p style="display: inline;"
+                        data-placement="top"
+                        data-toggle="tooltip"
+                        title="Edit">
+                        <a class="btn btn-primary btn-xs"
+                            href="/admin/commerical-categories/commerical-edit-categories/<%= cat._id %>"><img
+                                src="/images/edit.svg"></a>
+                    </p>
+                    <p style="display: inline;"
+                        data-placement="top"
+                        data-toggle="tooltip"
+                        title="Delete">
+                        <a class="btn btn-danger btn-xs"
+                            href="/admin/commerical-categories/delete-commerical-category/<%= cat._id %>"><img
+                                src="/images/trash-2.svg"></a>
+                    </p>
+                </td>
+                <!--<td><a class="confirmDeletion" href="/admin/categories/delete-category/<%= cat._id %>">Delete</a></td>-->
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>
+<%- include ("./../partials/adminFooter") %>
