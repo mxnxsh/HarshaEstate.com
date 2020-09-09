@@ -4,7 +4,11 @@ const session = require('express-session');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
+
 const app = express();
+
+// Passport Config
+require('./config/passport')(passport);
 
 // Connect to db
 // mongoose.connect('mongodb://localhost:27017/MeetrealEstate', {
@@ -45,11 +49,15 @@ app.use(
    session({
       secret: 'secret',
       resave: true,
-      saveUninitialized: true,
-   }),
+      saveUninitialized: true
+   })
 );
 
-// Connect flash
+ // Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+ // Connect flash
 app.use(flash());
 
 // Global variables
@@ -61,11 +69,6 @@ app.use(function (req, res, next) {
    next();
 });
 
-// Passport Config
-require('./config/passport')(passport);
-// Passport Middleware
-app.use(passport.initialize());
-app.use(passport.session());
 
 // Set global errors variable
 app.locals.errors = null;
@@ -129,10 +132,31 @@ app.get('/services', (req, res) => {
       title: 'services',
    });
 });
+
+// const User = require('./models/user')
+
+// app.get('/common-user',(req,res)=>{
+//    User.find({},(err,users)=>{
+//       if(err) return console.log(err);
+//       res.render('admin/user', {
+//          users:users
+//       });
+//    })
+// });
+// app.get('/common-user/:_id',(req,res)=>{
+//    User.findById(req.params._id,(err,user)=>{
+//       if(err) return console.log(err);
+//       user.isChecked = false
+//       user.save(err=>{
+//          if(err) return console.log(err);
+//          res.redirect('back')
+//       });
+//    });
+// });
+
 app.use((req, res, next) => {
-   // next(createError(404));
    res.status(404).render('user/404',{
-      title:'title'
+      title:'Error'
    })
 });
 // Connect with the server

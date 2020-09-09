@@ -9,7 +9,6 @@ const UserSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        // unique: true,
         required: true,
     },
     number: {
@@ -19,6 +18,10 @@ const UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    isChecked:{
+        type:Boolean,
+        default:true
     },
     admin: {
         type: Number

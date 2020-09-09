@@ -78,8 +78,8 @@ router.post(
                      password: password,
                      admin: 0,
                   });
-                  bcrypt.genSalt(10, function (err, salt) {
-                     bcrypt.hash(user.password, salt, function (err, hash) {
+                  bcrypt.genSalt(10,  (err, salt)=> {
+                     bcrypt.hash(user.password, salt,  (err, hash)=> {
                         if (err) {
                            console.log(err);
                            if (
@@ -115,7 +115,7 @@ router.post(
 /*
  * GET login
  */
-router.get('/login',isUser.forwardAuthenticated, function (req, res) {
+router.get('/login',isUser.forwardAuthenticated,  (req, res)=> {
    res.render('user/login', {
       title: 'Log in',
    });
@@ -124,11 +124,11 @@ router.get('/login',isUser.forwardAuthenticated, function (req, res) {
 /*
  * POST login
  */
-router.post('/login', function (req, res, next) {
+router.post('/login', (req, res, next) => {
    passport.authenticate('local', {
       successRedirect: '/',
       failureRedirect: '/users/login',
-      failureFlash: true,
+      failureFlash: true
    })(req, res, next);
 });
 
@@ -140,6 +140,8 @@ router.get('/logout', function (req, res) {
    req.flash('success_msg', 'You are logged out!');
    res.redirect('/users/login');
 });
+
+
 
 // Exports
 module.exports = router;

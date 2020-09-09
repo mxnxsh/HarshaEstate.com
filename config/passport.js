@@ -1,6 +1,7 @@
-var LocalStrategy = require('passport-local').Strategy;
+/*jshint esversion: 6 */
+const LocalStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcryptjs');
 var User = require('./../models/user');
-var bcrypt = require('bcryptjs');
 
 module.exports = function (passport) {
     passport.use(new LocalStrategy({
@@ -11,7 +12,6 @@ module.exports = function (passport) {
         }, function (err, user) {
             if (err)
                 console.log(err);
-
             if (!user) {
                 return done(null, false, {
                     message: 'Email is not registered'
@@ -23,7 +23,8 @@ module.exports = function (passport) {
                 if (isMatch) {
                     return done(null, user);
                 } else {
-                    return done(null, false, {
+                    // console.log('Password Incorrect');
+                    return done(null ,false, {
                         message: 'Password Incorrect'
                     });
                 }
@@ -39,3 +40,4 @@ module.exports = function (passport) {
         });
     });
 }
+

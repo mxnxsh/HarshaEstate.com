@@ -1,0 +1,40 @@
+<%- include ("./../partials/adminHeader") %>
+
+<div class="container table-responsive">
+    <h2 class="page-title">User</h2>
+    <br><br>
+
+    <table class="table propertyList table-hover">
+
+        <thead class="thead-dark">
+            <tr>
+                <th>Username</th>
+                <th>Mobile no.</th>
+                <th>Email ID</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(function(user){ %>
+            <tr class="<%= user.isChecked== false? 'd-none' : '' %>">
+                <td>
+                    <%= user.name %>
+                </td>
+                <td>
+                    <%= user.number %>
+                </td>
+                <td>
+                    <%= user.email %>
+                </td>
+                <td>
+                    <p><a class="btn btn-primary btn-xs"
+                            href="common-user/<%=user._id%>"> <i class="fas fa-check"></i>
+                        </a>
+                    </p>
+                </td>
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>
+<%- include ("./../partials/adminFooter") %>
