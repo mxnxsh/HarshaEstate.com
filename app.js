@@ -49,15 +49,15 @@ app.use(
    session({
       secret: 'secret',
       resave: true,
-      saveUninitialized: true
-   })
+      saveUninitialized: true,
+   }),
 );
 
- // Passport middleware
+// Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
- // Connect flash
+// Connect flash
 app.use(flash());
 
 // Global variables
@@ -69,7 +69,6 @@ app.use(function (req, res, next) {
    next();
 });
 
-
 // Set global errors variable
 app.locals.errors = null;
 app.get('*', function (req, res, next) {
@@ -77,7 +76,6 @@ app.get('*', function (req, res, next) {
    res.locals.user = req.user || null;
    next();
 });
-
 
 // Get Category Model
 const Category = require('./models/category');
@@ -133,31 +131,10 @@ app.get('/services', (req, res) => {
    });
 });
 
-// const User = require('./models/user')
-
-// app.get('/common-user',(req,res)=>{
-//    User.find({},(err,users)=>{
-//       if(err) return console.log(err);
-//       res.render('admin/user', {
-//          users:users
-//       });
-//    })
-// });
-// app.get('/common-user/:_id',(req,res)=>{
-//    User.findById(req.params._id,(err,user)=>{
-//       if(err) return console.log(err);
-//       user.isChecked = false
-//       user.save(err=>{
-//          if(err) return console.log(err);
-//          res.redirect('back')
-//       });
-//    });
-// });
-
 app.use((req, res, next) => {
-   res.status(404).render('user/404',{
-      title:'Error'
-   })
+   res.status(404).render('user/404', {
+      title: 'Error',
+   });
 });
 // Connect with the server
 let port = process.env.PORT || 3000;

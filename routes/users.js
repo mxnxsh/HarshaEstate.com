@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const { check, validationResult } = require('express-validator');
-const {isUser} = require('../config/auth')
+const { isUser ,isAdmin} = require('../config/auth');
 // const errors = []
 
 // Get Users model
@@ -76,10 +76,10 @@ router.post(
                      email: email,
                      number: number,
                      password: password,
-                     admin: 1,
+                     admin: 0,
                   });
-                  bcrypt.genSalt(10,  (err, salt)=> {
-                     bcrypt.hash(user.password, salt,  (err, hash)=> {
+                  bcrypt.genSalt(10, (err, salt) => {
+                     bcrypt.hash(user.password, salt, (err, hash) => {
                         if (err) {
                            console.log(err);
                            if (
@@ -99,7 +99,10 @@ router.post(
                            if (err) {
                               console.log(err);
                            } else {
-                              req.flash('success_msg', 'You are now registered! Please log in');
+                              req.flash(
+                                 'success_msg',
+                                 'You are now registered! Please log in',
+                              );
                               res.redirect('/users/login');
                            }
                         });
@@ -115,7 +118,7 @@ router.post(
 /*
  * GET login
  */
-router.get('/login',isUser.forwardAuthenticated,  (req, res)=> {
+router.get('/login', isUser.forwardAuthenticated, (req, res) => {
    res.render('user/login', {
       title: 'Log in',
    });
@@ -128,7 +131,7 @@ router.post('/login', (req, res, next) => {
    passport.authenticate('local', {
       successRedirect: '/',
       failureRedirect: '/users/login',
-      failureFlash: true
+      failureFlash: true,
    })(req, res, next);
 });
 
@@ -141,7 +144,30 @@ router.get('/logout', function (req, res) {
    res.redirect('/users/login');
 });
 
-
+/*
+ * GET common -user
+ */
+router.get('/common-user',isAdmin, (req, res) => {
+   User.find({}, (err, users) => {
+      if (err) return console.log(err);
+      res.render('admin/user', {
+         users: users,
+      });
+   });
+});
+/*
+ * GET common-user id
+ */
+router.get('/common-user/:_id',isAdmin, (req, res) => {
+   User.findById(req.params._id, (err, user) => {
+      if (err) return console.log(err);
+      user.isChecked = false;
+      user.save(err => {
+         if (err) return console.log(err);
+         res.redirect('back');
+      });
+   });
+});
 
 // Exports
 module.exports = router;
