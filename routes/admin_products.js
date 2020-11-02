@@ -312,7 +312,7 @@ router.get('/delete_product/:_id', isAdmin,(req, res) => {
          gallery.forEach(filePath => {
             fs.unlink('public/uploads/gallery/' + filePath, err => {
                if (err) {
-                  console.log(err);
+                  console.log("No files found =>",err);
                } else {
                   console.log('Successfully Gallery is deleted');
                }

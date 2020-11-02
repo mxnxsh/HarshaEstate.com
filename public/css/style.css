@@ -11615,7 +11615,7 @@ h5,
 
 @media (max-width: 991.98px) {
   .ftco-navbar-light {
-    background: #d88508 !important;
+    background: #27160a !important;
     /* background: transparent !important; */
     position: relative;
     top: 0;
@@ -11734,12 +11734,12 @@ h5,
 }
 
 .ftco-navbar-light .navbar-nav>.nav-item.active>a {
-  color: #e86ed0;
+  color: #27160a;
 }
 
 @media (max-width: 991.98px) {
   .ftco-navbar-light .navbar-nav>.nav-item.active>a {
-    color: #e86ed0;
+    color: #fff;
   }
 }
 
@@ -11800,7 +11800,7 @@ h5,
 }
 
 .ftco-navbar-light.scrolled .nav-item.active>a {
-  color: #e86ed0 !important;
+  color: #27160a !important;
 }
 
 .ftco-navbar-light.scrolled .nav-item.cta>a {
@@ -12341,27 +12341,27 @@ h5,
 }
 
 .btn.btn-primary {
-  background: #e86ed0 !important;
-  border: 1px solid #e86ed0 !important;
+  background: #27160a !important;
+  border: 1px solid #27160a !important;
   color: #fff !important;
 }
 
 .btn.btn-primary:hover {
-  border: 1px solid #e86ed0;
+  border: 1px solid #27160a;
   background: transparent;
-  color: #e86ed0;
+  color: #27160a;
 }
 
 .btn.btn-primary.btn-outline-primary {
-  border: 1px solid #e86ed0;
+  border: 1px solid #27160a;
   background: transparent;
-  color: #e86ed0;
+  color: #27160a;
 }
 
 .btn.btn-primary.btn-outline-primary:hover {
   border: 1px solid transparent;
-  background: #e86ed0;
-  color: #fff;
+  background: #27160a;
+  color: #27160a;
 }
 
 .btn.btn-outline-white {
@@ -12513,7 +12513,7 @@ h5,
   right: 0;
   width: 40px;
   height: 40px;
-  background: #e86ed0;
+  background: #27160a;
   border-radius: 50% 0 0 0;
 }
 
@@ -12745,7 +12745,7 @@ h5,
   bottom: 0;
   content: '';
   opacity: 1;
-  background: #000000;
+  background: #fff;
 }
 
 @media (max-width: 767.98px) {
@@ -12820,7 +12820,7 @@ h5,
 .services.services-2 .icon {
   width: 90px;
   height: 90px;
-  background: #e86ed0;
+  background: #27160a;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
@@ -12833,11 +12833,11 @@ h5,
 }
 
 .services.services-2 h3 {
-  color: #fff;
+  color: #27160a;
 }
 
 .services.services-2 .media-body {
-  color: rgba(255, 255, 255, 0.8);
+  color: #27160a;
 }
 
 .services-wrap {
@@ -13031,7 +13031,7 @@ textarea.form-control {
 }
 
 .ftco-footer .ftco-footer-widget ul li a span {
-  color: #e86ed0;
+  color: #27160a;
 }
 
 .ftco-footer .ftco-footer-widget .btn-primary {
@@ -13182,12 +13182,12 @@ textarea.form-control {
 .mouse-icon {
   width: 80px;
   height: 80px;
-  border: 1px solid #e86ed0;
+  border: 1px solid #27160a;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   border-radius: 50%;
-  background: #e86ed0;
+  background: #27160a;
   cursor: pointer;
   position: relative;
   text-align: center;
@@ -13298,7 +13298,7 @@ textarea.form-control {
   font-size: 18px;
   display: inline-block;
   margin-bottom: 0;
-  color: #e86ed0;
+  color: #27160a;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 2px;
@@ -13317,7 +13317,7 @@ textarea.form-control {
   width: 50px;
   height: 1px;
   margin-top: -1px;
-  background: #e86ed0;
+  background: #27160a;
 }
 
 .heading-section .subheading:before {
@@ -13331,7 +13331,7 @@ textarea.form-control {
   width: 50px;
   height: 1px;
   margin-top: -1px;
-  background: #e86ed0;
+  background: #27160a;
 }
 
 .heading-section h2 {
@@ -13346,12 +13346,12 @@ textarea.form-control {
 }
 
 .heading-section.heading-section-white .subheading {
-  color: rgba(255, 255, 255, 0.9);
+  color: #27160a;
 }
 
 .heading-section.heading-section-white h2 {
   font-size: 40px;
-  color: #fff;
+  color: #27160a;
 }
 
 .heading-section.heading-section-white p {
@@ -13807,7 +13807,7 @@ textarea.form-control {
   width: 40px;
   font-size: 18px;
   padding-top: 2px;
-  color: #e86ed0;
+  color: #27160a;
 }
 
 .block-6 .media-body p {

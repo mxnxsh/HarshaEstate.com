@@ -497,9 +497,12 @@
 }
 .icon-twitter:before {
   content: "\f099";
+  color:#27160a;
 }
 .icon-facebook:before {
   content: "\f09a";
+  color:#27160a;
+
 }
 .icon-facebook-f:before {
   content: "\f09a";
@@ -1157,6 +1160,7 @@
 }
 .icon-instagram:before {
   content: "\f16d";
+  color:#27160a;
 }
 .icon-flickr:before {
   content: "\f16e";
@@ -1187,6 +1191,7 @@
 }
 .icon-long-arrow-right:before {
   content: "\f178";
+  color: #27160a;
 }
 .icon-apple:before {
   content: "\f179";
