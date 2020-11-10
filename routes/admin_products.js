@@ -61,6 +61,7 @@ router.get('/add_products', isAdmin,(req, res) => {
       floorArea,
       location,
    } = '';
+   
    Category.find((err, categories) => {
       res.render('admin/add_products', {
          title: title,
