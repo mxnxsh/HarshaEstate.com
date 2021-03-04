@@ -76,7 +76,7 @@ router.post(
                      email: email,
                      number: number,
                      password: password,
-                     admin: 1,
+                     admin: 0,
                   });
                   bcrypt.genSalt(10, (err, salt) => {
                      bcrypt.hash(user.password, salt, (err, hash) => {
