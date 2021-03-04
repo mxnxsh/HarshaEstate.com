@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const { check, validationResult } = require('express-validator');
-const { isUser ,isAdmin} = require('../config/auth');
+const { isUser, isAdmin } = require('../config/auth');
 // const errors = []
 
 // Get Users model
@@ -76,7 +76,7 @@ router.post(
                      email: email,
                      number: number,
                      password: password,
-                     admin: 0,
+                     admin: 1,
                   });
                   bcrypt.genSalt(10, (err, salt) => {
                      bcrypt.hash(user.password, salt, (err, hash) => {
@@ -147,7 +147,7 @@ router.get('/logout', function (req, res) {
 /*
  * GET common -user
  */
-router.get('/common-user',isAdmin, (req, res) => {
+router.get('/common-user', isAdmin, (req, res) => {
    User.find({}, (err, users) => {
       if (err) return console.log(err);
       res.render('admin/user', {
@@ -158,7 +158,7 @@ router.get('/common-user',isAdmin, (req, res) => {
 /*
  * GET common-user id
  */
-router.get('/common-user/:_id',isAdmin, (req, res) => {
+router.get('/common-user/:_id', isAdmin, (req, res) => {
    User.findById(req.params._id, (err, user) => {
       if (err) return console.log(err);
       user.isChecked = false;

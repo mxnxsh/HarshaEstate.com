@@ -14,7 +14,7 @@ const CommericalCategory = require('./../models/commericalcategory');
 /*
  * GET all products
  */
-router.get('/',(req, res) => {
+router.get('/', (req, res) => {
    Product.find()
       .sort({
          date: -1,
@@ -86,12 +86,12 @@ router.get('/commerical', (req, res) => {
 router.get('/properties/:category', (req, res) => {
    const categorySlug = req.params.category;
    Category.findOne({
-         slug: categorySlug,
-      },
+      slug: categorySlug,
+   },
       (err, c) => {
          Product.find({
-               category: categorySlug
-            })
+            category: categorySlug
+         })
             .sort({
                date: -1
             })
@@ -112,12 +112,12 @@ router.get('/properties/:category', (req, res) => {
 router.get('/commerical/:category', (req, res) => {
    const categorySlug = req.params.category;
    CommericalCategory.findOne({
-         slug: categorySlug,
-      },
+      slug: categorySlug,
+   },
       (err, c) => {
          CommericalProperty.find({
-               category: categorySlug
-            })
+            category: categorySlug
+         })
             .sort({
                date: -1
             })

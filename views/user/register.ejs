@@ -1,95 +1,95 @@
 <%- include("./../partials/header.ejs")%>
-<section class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight"
-   style="background-image: url('/images/bg_1.jpg');"
-   data-stellar-background-ratio="0.5">
-   <div class="overlay"></div>
-   <div class="container">
-      <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-         <div class="col-md-9 ftco-animate pb-5 text-center">
-            <p class="breadcrumbs">
-               <span class="mr-2"><a href="/">Home <i class="ion-ios-arrow-forward"></i></a></span>
-               <span>Register <i class="ion-ios-arrow-forward"></i></span>
-            </p>
-            <h1 class="mb-3 bread">Register</h1>
-         </div>
+<section
+  class="hero-wrap hero-wrap-2 ftco-degree-bg js-fullheight"
+  style="background-image: url('/images/bg_1.jpg')"
+  data-stellar-background-ratio="0.5"
+>
+  <div class="overlay"></div>
+  <div class="container">
+    <div
+      class="row no-gutters slider-text js-fullheight align-items-center justify-content-center"
+    >
+      <div class="col-md-9 ftco-animate pb-5 text-center">
+        <p class="breadcrumbs">
+          <span class="mr-2"
+            ><a href="/">Home <i class="ion-ios-arrow-forward"></i></a
+          ></span>
+          <span>Register <i class="ion-ios-arrow-forward"></i></span>
+        </p>
+        <h1 class="mb-3 bread">Register</h1>
       </div>
-   </div>
+    </div>
+  </div>
 </section>
-
 
 <div class="mt-4"></div>
 <section>
-   <div class="container">
-      <div class="row">
-         <div class="col-sm-6 d-none d-sm-block">
-            <img src="/images/register.svg"
-               class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
-               alt="" />
-         </div>
-         <div class="mt-5 col-sm-6">
-            <div class="container">
-               <%- include("./../partials/messages.ejs")%>
-            </div>
-            <form class=""
-               method="POST"
-               action="/users/register">
-               <div class="text-center mb-4">
-                  <label class="mb-2"
-                     for="Name">
-                     Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </label>
-                  <input class="shadow appearance-none border rounded py-2 px-3"
-                     id="name"
-                     type="name"
-                     name="name"
-                     placeholder="Name"
-                     value="<%= typeof name != 'undefined' ? name : '' %>" />
-               </div>
-               <div class="text-center mb-4">
-                  <label class="mb-2"
-                     for="Number">
-                     Number &nbsp;&nbsp;
-                  </label>
-                  <input class="shadow appearance-none border rounded py-2 px-3"
-                     id="number"
-                     type="text"
-                     name="number"
-                     placeholder="Mobile number"
-                     value="<%= typeof mobile != 'undefined' ? mobile : '' %>" />
-               </div>
-               <div class="text-center mb-4">
-                  <label class="mb-2"
-                     for="username">
-                     Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </label>
-                  <input class="shadow appearance-none border rounded py-2 px-3"
-                     id="email"
-                     type="email"
-                     name="email"
-                     placeholder="Email"
-                     value="<%= typeof email != 'undefined' ? email : '' %>" />
-               </div>
-               <div class="text-center mb-4">
-                  <label class="mb-2"
-                     for="password">
-                     Password
-                  </label>
-                  <input class="shadow appearance-none border rounded py-2 px-3 mb-3"
-                     id="password"
-                     type="password"
-                     name="password"
-                     placeholder="**********"
-                     value="<%= typeof password != 'undefined' ? password : '' %>" />
-               </div>
-               <div class="text-center">
-                  <button type="submit"
-                     class="btn btn-primary">
-                     Register
-                  </button>
-               </div>
-            </form>
-         </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 d-none d-sm-block">
+        <img
+          src="/images/register.svg"
+          class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
+          alt=""
+        />
       </div>
-   </div>
+      <div class="mt-5 col-sm-6">
+        <div class="container"><%- include("./../partials/messages.ejs")%></div>
+        <form class="" method="POST" action="/users/register">
+          <div class="text-center mb-4">
+            <label class="mb-2" for="Name">
+              Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label>
+            <input
+              class="shadow appearance-none border rounded py-2 px-3"
+              id="name"
+              type="name"
+              name="name"
+              placeholder="Name"
+              value="<%= typeof name != 'undefined' ? name : '' %>"
+            />
+          </div>
+          <div class="text-center mb-4">
+            <label class="mb-2" for="Number"> Number &nbsp;&nbsp; </label>
+            <input
+              class="shadow appearance-none border rounded py-2 px-3"
+              id="number"
+              type="text"
+              name="number"
+              placeholder="Mobile number"
+              value="<%= typeof mobile != 'undefined' ? mobile : '' %>"
+            />
+          </div>
+          <div class="text-center mb-4">
+            <label class="mb-2" for="username">
+              Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label>
+            <input
+              class="shadow appearance-none border rounded py-2 px-3"
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Email"
+              value="<%= typeof email != 'undefined' ? email : '' %>"
+            />
+          </div>
+          <div class="text-center mb-4">
+            <label class="mb-2" for="password"> Password </label>
+            <input
+              class="shadow appearance-none border rounded py-2 px-3 mb-3"
+              id="password"
+              type="password"
+              name="password"
+              placeholder="**********"
+              value="<%= typeof password != 'undefined' ? password : '' %>"
+            />
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </section>
 <%- include("./../partials/footer.ejs")%>
