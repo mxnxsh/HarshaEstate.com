@@ -11,19 +11,19 @@ const app = express();
 require('./config/passport')(passport);
 
 // Connect to db
-// mongoose.connect('mongodb://localhost:27017/MeetrealEstate', {
-//    useNewUrlParser: true,
-//    useUnifiedTopology: true,
-//    useCreateIndex: true,
-// });
+mongoose.connect('mongodb://localhost:27017/MeetrealEstate', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+   useCreateIndex: true,
+});
 // Connect to cloud db
-mongoose.connect(
+/*mongoose.connect(
    'mongodb+srv://admin-manish:kingisback123@cluster0-tm1kx.mongodb.net/MeetRealEstate',
    {
       useNewUrlParser: true,
       useUnifiedTopology: true,
    },
-);
+);*/
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

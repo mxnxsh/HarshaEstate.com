@@ -78,6 +78,7 @@ router.post(
                      password: password,
                      admin: 0,
                   });
+                  //
                   bcrypt.genSalt(10, (err, salt) => {
                      bcrypt.hash(user.password, salt, (err, hash) => {
                         if (err) {
